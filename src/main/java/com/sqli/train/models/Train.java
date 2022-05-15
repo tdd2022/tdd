@@ -37,22 +37,22 @@ public class Train {
 	}
 
 	public boolean fill() {
-		// this.wagons = wagons.stream().filter(w -> (w instanceof Cargo) &&
-		// w.isLast()).collect(Collectors.toList());
+		boolean existEmptyCargo = Boolean.TRUE;
 		List<Wagon> wagonsChanged = new ArrayList<>();
 		for (Wagon wagon : this.wagons) {
 			if (wagon instanceof Cargo && !wagon.isEmpty) {
 
 				wagon.setEmpty(true);
 				wagonsChanged.add(wagon);
-				return true;
+				return existEmptyCargo;
 
 			} else {
 				wagonsChanged.add(wagon);
 			}
 		}
 		this.wagons = wagonsChanged;
-		return false;
+		existEmptyCargo = Boolean.FALSE;
+		return existEmptyCargo;
 
 	}
 }
